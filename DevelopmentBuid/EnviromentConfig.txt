@@ -1,0 +1,9 @@
+1. Java 环境搭建，下载JDK，Tomcat后设置环境变量（Mac）
+####################Personal Setting#################
+alias dir='ls -l'
+export MYSQL_PATH=/usr/local/mysql
+export TOMCAT_PATH=/Library/Apache/apache-tomcat-9.0.0.M15
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk/Contents/Home
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$JAVA_HOME/bin:$MYSQL_PATH/bin:$TOMCAT_PATH/bin:$PATH
+
