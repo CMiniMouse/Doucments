@@ -7,3 +7,67 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk/Contents/Hom
 export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 export PATH=$JAVA_HOME/bin:$MYSQL_PATH/bin:$TOMCAT_PATH/bin:$PATH
 
+2.Vim 个人配置（~路径下，新建.vimrc文件，以下为文件内容）
+
+" Normally we use vim-extensions. If you want true vi-compatibility
+" remove change the following statements
+set nocompatible	" Use Vim defaults instead of 100% vi compatibility
+set backspace=2		" more powerful backspacing
+
+" Don't write backup file if vim is being called by "crontab -e"
+au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
+" Don't write backup file if vim is being called by "chpass"
+au BufWrite /private/etc/pw.* set nowritebackup nobackup
+
+set showmatch      " 高亮显示对应的括号
+set number         " 显示行号
+set autoindent     " 自动对齐
+set cindent        " C风格的对齐方式
+set tabstop=4      " Tab键的宽度
+syntax on          " 自动语法高亮
+set softtabstop=4
+set shiftwidth=4   "  统一缩进为4
+set matchtime=5    " 对应括号高亮的时间（单位是十分之一秒）
+set autowrite      " 在切换buffer时自动保存当前文件
+set autoread       " 设置当文件被改动时自动载入
+set completeopt=preview,menu "代码补全
+
+"设置数字颜色
+hi Number ctermfg=white
+
+" 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
+set mouse=a
+set selection=exclusive
+set selectmode=mouse,key
+
+"==================自定义的键映射======================
+" 括号自动生成
+vnoremap $1 <esc>`>a)<esc>`<i(<esc>
+vnoremap $2 <esc>`>a]<esc>`<i[<esc>
+vnoremap $3 <esc>`>a}<esc>`<i{<esc>
+vnoremap $$ <esc>`>a"<esc>`<i"<esc>
+vnoremap $q <esc>`>a'<esc>`<i'<esc>
+vnoremap $e <esc>`>a"<esc>`<i"<esc>
+
+" 单键<F7>控制syntax on/off。原因是有时候颜色太多会妨碍阅读。
+map <F7> :if exists("syntax_on") <BAR>
+\    syntax off <BAR><CR>
+\  else <BAR>
+\syntax enable <BAR>
+\  endif
+
+" <F5>编译和运行C程序
+map <F5> :call CompileRunGcc()<CR>
+func! CompileRunGcc()
+exec "w"
+exec "!gcc % -o %<"
+exec "! ./%<"
+endfunc
+
+" <F6>编译和运行C++程序
+map <F6> :call CompileRunGpp<CR>
+func! CompileRunGpp()
+exec "w"
+exec "!g++ % -o %<"
+exec "! ./<"
+endfunc
