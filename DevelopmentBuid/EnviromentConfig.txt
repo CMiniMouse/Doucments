@@ -71,3 +71,32 @@ exec "w"
 exec "!g++ % -o %<"
 exec "! ./<"
 endfunc
+
+" <F4>编译和运行python程序
+map <F4> :call CompileRunPython()<CR>
+func! CompileRunPython()
+exec "w"
+exec "!python %"
+endfunc
+
+" <F1>实现(、[、{、"、'  输入后自动补全右边部分，光标也会位于中间位置.
+map <F1> :call MyCompleteAdd()<CR>
+func! MyCompleteAdd()
+inoremap ( ()<ESC>i
+inoremap [ []<ESC>i
+inoremap { {}<ESC>i
+inoremap < <><ESC>i
+inoremap " ""<ESC>i
+inoremap ' ''<ESC>i
+endfunc
+
+" <F2>取消(、[、{、"、'  输入后自动补全右边.
+map <F2> :call MyCompleteDel()<CR>
+func! MyCompleteDel()
+inoremap ( (
+inoremap [ [
+inoremap { {
+inoremap < <
+inoremap " "
+inoremap ' '
+endfunc
