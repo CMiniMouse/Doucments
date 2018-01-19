@@ -40,7 +40,7 @@ make distclean
 
 make VIMRUNTIMEDIR=/usr/share/vim/vim80   
 
-make install   
+sudo make install 
 
 ***
 
