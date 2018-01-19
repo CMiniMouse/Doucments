@@ -1,4 +1,4 @@
-# Documents
+# Mac 源码编译安装vim8.0
 ##  1.安装依赖库
 
 brew install libncurses5-dev libgnome2-dev libgnomeui-dev \    
@@ -42,14 +42,20 @@ sudo make VIMRUNTIMEDIR=/usr/share/vim/vim80  
 
 sudo make install 
 
+> * *若sudo make install 报没有权限，那么重启，按住Command+R进入恢复模式，打开终端，csrutil disable；reboot*  
+> * *重新登录后，先看看csrutil status试试disabled。若disabled，在执行上面的操作。vim所有步骤完成后记得csrutil enable;reboot哦！！！*
+
 ***
 
 ##  4. 让VIM作为你的默认编辑器
 
-sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 1  
-sudo update-alternatives --set editor /usr/bin/vim  
-sudo update-alternatives --install /usr/bin/vi vi /usr/bin/vim 1  
-sudo update-alternatives --set vi /usr/bin/vim   
+cd ~/Workspace/openSource/vim/src    
+
+sudo cp vim /usr/local/bin/vim     
+
+sudo cp vim /usr/bin/vim  
+
+> **也可以先which vim 看看可执行vim所在路径*
 
 ***
 
